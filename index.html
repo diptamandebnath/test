@@ -121,7 +121,7 @@ window.login = function () {
     signInWithEmailAndPassword(auth, email, password)
     .then(() => {
         alert("Login Successful");
-        window.location.href = "dashboard.html";
+        window.location.href = "/main.php";
     })
     .catch((error) => {
         document.getElementById("error").innerText = error.message;
