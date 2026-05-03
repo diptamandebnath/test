@@ -101,6 +101,7 @@ button:hover {
 
     <div id="error"></div>
 </div>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
@@ -114,18 +115,37 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-window.login = function () {
+window.login = async function () {
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
 
-    signInWithEmailAndPassword(auth, email, password)
-    .then(() => {
-        alert("Login Successful");
-        window.location.href = "/examignou/main.php";
-    })
-    .catch((error) => {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+
+        const token = await userCredential.user.getIdToken();
+
+        const response = await fetch("create_session.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                token: token,
+                sccode: email   // ⚠️ Replace with actual mapping if needed
+            })
+        });
+
+        const result = await response.text();
+
+        if (response.ok) {
+            window.location.href = "/examignou/main.php";
+        } else {
+            document.getElementById("error").innerText = result;
+        }
+
+    } catch (error) {
         document.getElementById("error").innerText = error.message;
-    });
+    }
 };
 </script>
 
