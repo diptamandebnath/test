@@ -6,8 +6,13 @@
 <title>IGNOU Examination Portal - Login</title>
 
 <style>
-body {
+* {
     margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
     font-family: 'Segoe UI', sans-serif;
     background: linear-gradient(135deg, #2f4f88, #1e3c72);
     height: 100vh;
@@ -16,72 +21,66 @@ body {
     align-items: center;
 }
 
-.header {
-    padding: 20px;
-}
-
-.logo {
-    width: 120px;
-    animation: spin 8s linear infinite;
-}
-
-@keyframes spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-}
-
-h1 {
-    font-size: 24px;
-    margin-top: 10px;
-}
-
-.marquee {
-    font-size: 18px;
-    margin-top: 10px;
-    color: #ffd700;
-}
-
 .container {
-    background: #fff;
-    width: 350px;
+    background: #ffffff;
+    width: 360px;
     padding: 30px 25px;
-    border-radius: 12px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
     text-align: center;
 }
 
 .container h2 {
     margin-bottom: 20px;
+    color: #222;
+    font-weight: 600;
 }
 
-input {
+.container input {
     width: 100%;
-    padding: 12px;
+    padding: 13px;
     margin: 10px 0;
-    border-radius: 8px;
+    border-radius: 10px;
     border: 1px solid #ccc;
     font-size: 15px;
-    box-sizing: border-box;
+    transition: 0.3s;
 }
 
-button {
+.container input:focus {
+    border-color: #2f4f88;
+    outline: none;
+    box-shadow: 0 0 5px rgba(47,79,136,0.3);
+}
+
+.container button {
     width: 100%;
-    padding: 12px;
-    background: #2a5298;
+    padding: 13px;
+    margin-top: 12px;
+    background: #2f4f88;
     color: #fff;
     border: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
+    transition: 0.3s;
 }
 
-button:hover {
+.container button:hover {
     background: #1e3c72;
 }
 
 #error {
-    color: red;
     margin-top: 10px;
+    font-size: 14px;
+    color: red;
+}
+
+@media (max-width: 400px) {
+    .container {
+        width: 90%;
+        padding: 25px 20px;
+    }
 }
 </style>
 </head>
